@@ -1,11 +1,6 @@
 from rest_framework import viewsets
-from . models import Post,UserInfo
-from . serializers import PostSerializer, UserInfoSerializer
-
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+from . models import UserInfo
+from . serializers import  UserInfoSerializer
 
 
 class UserInfoView(viewsets.ModelViewSet):
