@@ -20,19 +20,19 @@ from . models import UserInfo,Services,Skills,Education,Experience,Cuntuct_us,Po
 class UserInfoAdmin(TranslatableAdmin):
     list_display = ('full_name','title')
 
-admin.register(Services)
+@admin.register(Services)
 class ServicesAdmin(TranslatableAdmin):
     list_display = ('title',)
 
-admin.site.register(Education)
+@admin.register(Education)
 class EducationAdmin(TranslatableAdmin):
     list_display = ('degree','education_place')
 
-admin.site.register(Experience)
+@admin.register(Experience)
 class ExperienceAdmin(TranslatableAdmin):
     list_display = ('job_title','work_place')
 
-admin.site.register(Portfolio)
+@admin.register(Portfolio)
 class PortfolioAdmin(TranslatableAdmin):
     list_display = ('title',)
     

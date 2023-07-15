@@ -13,10 +13,13 @@ class UserInfo(TranslatableModel):
         bio = models.TextField(_("Bio"),null=True,blank=True),
         cv = models.FileField(upload_to='CV/',null=True,blank=True),
     )
-    experince = models.IntegerField(default=0,null=True,blank=True),
+    experince = models.IntegerField(default=0,null=True,blank=True)
     age = models.IntegerField(default=0,null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
 
+    @property
+    def projects(self):
+        return self.user.portfolio_set.all().count()
 
     class Meta:
         ordering = ['-id']
@@ -27,6 +30,7 @@ class UserInfo(TranslatableModel):
 
 class Services(TranslatableModel):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    icon = models.CharField(max_length=200,null=True,blank=True)
     translations = TranslatedFields(
         title = models.CharField(_('Title'),max_length=200,null=True,blank=True),
         desciption = models.TextField(_('Description'),null=True,blank=True)
@@ -38,7 +42,7 @@ class Services(TranslatableModel):
         verbose_name_plural = _("Services")
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 class Education(TranslatableModel):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -55,7 +59,7 @@ class Education(TranslatableModel):
         verbose_name_plural = _("Education")
 
     def __str__(self):
-        return self.degree
+        return str(self.id)
 
 class Experience(TranslatableModel):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -72,7 +76,7 @@ class Experience(TranslatableModel):
         verbose_name_plural = _("Experience")
 
     def __str__(self):
-        return self.job_title
+        return str(self.id)
 
 class Skills(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -84,7 +88,7 @@ class Skills(models.Model):
         verbose_name_plural = _("Skills")
 
     def __str__(self):
-        return self.skill_name
+        return str(self.id) 
 
 class Portfolio(TranslatableModel):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -100,10 +104,9 @@ class Portfolio(TranslatableModel):
         verbose_name_plural = _("Portfolio")
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 class Cuntuct_us(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     subject = models.TextField()
