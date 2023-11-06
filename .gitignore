@@ -126,5 +126,7 @@ dmypy.json
 .pyre/
 .idea/*
 
+db.sqlite3
+
 media_root/
 static_root/
