@@ -1,7 +1,7 @@
 from rest_framework import routers
 from . views import UserInfoView,ServiceView,SkillView,EducationView,PortfolioView,CuntactView,ExperienceView
 
-router = routers.DefaultRouter()
+router = routers.SimpleRouter()
 
 router.register(r'userinfo', UserInfoView, basename='userinfo')
 router.register(r'service', ServiceView, basename='service')
